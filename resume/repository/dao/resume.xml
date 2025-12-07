@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao">
+    <sql id="common_field">
+        id,
+        name
+    </sql>
+
+    <insert id="insert_resume">
+        INSERT INTO resumes
+        <set>
+            <if test="'resume_id' in params and params['resume_id'] is not None">
+                resume_id= :resume_id,
+            </if>
+            <if test="'name' in params and params['name'] is not None">
+                name= :name,
+            </if>
+            <if test="'job_title' in params and params['job_title'] is not None">
+                job_title= :job_title,
+            </if>
+            <if test="'recruitment_type' in params and params['recruitment_type'] is not None">
+                recruitment_type = :recruitment_type,
+            </if>
+            <if test="'data' in params and params['data'] is not None">
+                data= :data,
+            </if>
+            <if test="'style' in params and params['style'] is not None">
+                style= :style,
+            </if>
+        </set>
+    </insert>
+
+    <insert id="insert_resume_sqlite">
+        INSERT INTO resumes (
+            <if test="'resume_id' in params and params['resume_id'] is not None">
+                resume_id,
+            </if>
+            <if test="'name' in params and params['name'] is not None">
+                name,
+            </if>
+            <if test="'job_title' in params and params['job_title'] is not None">
+                job_title,
+            </if>
+            <if test="'recruitment_type' in params and params['recruitment_type'] is not None">
+                recruitment_type,
+            </if>
+            <if test="'data' in params and params['data'] is not None">
+                data,
+            </if>
+            <if test="'style' in params and params['style'] is not None">
+                style
+            </if>
+        ) VALUES
+        (
+            <if test="'resume_id' in params and params['resume_id'] is not None">
+                :resume_id,
+            </if>
+            <if test="'name' in params and params['name'] is not None">
+                :name,
+            </if>
+            <if test="'job_title' in params and params['job_title'] is not None">
+                :job_title,
+            </if>
+            <if test="'recruitment_type' in params and params['recruitment_type'] is not None">
+                :recruitment_type,
+            </if>
+            <if test="'data' in params and params['data'] is not None">
+                :data,
+            </if>
+            <if test="'style' in params and params['style'] is not None">
+                :style
+            </if>
+        )
+    </insert>
+    <select id="query_resume">
+        SELECT id, resume_id, name, job_title, recruitment_type, data, style
+        FROM resumes r
+        WHERE r.recruitment_type = :recruitment_type
+        ORDER BY r.id DESC
+    </select>
+</mapper>

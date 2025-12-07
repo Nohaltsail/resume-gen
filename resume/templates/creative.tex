@@ -1,0 +1,145 @@
+% ================================
+% 创意风 - 社招版本 (修复姓名显示，简化设计)
+% ================================
+\documentclass[10pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{shapes, shadows}
+\usepackage{background}
+\usepackage{multicol}
+\usepackage{ifthen}
+
+\geometry{margin=1.2cm}
+
+% 创意风配色 - 专业蓝调
+\definecolor{primary}{HTML}{2C3E50}      % 深蓝
+\definecolor{accent}{HTML}{3498DB}       % 亮蓝
+\definecolor{secondary}{HTML}{7F8C8D}    % 灰色
+\definecolor{sectionBg}{HTML}{E8F4FD}    % 浅蓝背景
+
+% 创意技能条
+\newcommand{\skillbar}[1]{%
+\begin{tikzpicture}
+    \fill[secondary!30] (0,0) rectangle (3.5,0.3);
+    \fill[accent] (0,0) rectangle (#1*0.175,0.3);
+\end{tikzpicture}%
+}
+
+% 创意头部设计 - 修复姓名显示
+\newcommand{\creativeHeader}{%
+\begin{tikzpicture}[remember picture,overlay]
+    % 简洁头部背景
+    \fill[primary] (current page.north west) rectangle (current page.north east);
+
+    % 姓名标题 - 直接显示
+    \node[anchor=center, text=white, font=\Huge\bfseries, yshift=-1.5cm] at (current page.north) {{name} {个人简历}};
+    \node[anchor=center, text=white!90, font=\Large, yshift=-2.2cm] at (current page.north) {{jobTitle}};
+\end{tikzpicture}
+}
+
+% 创意章节样式 - 简化设计
+\newenvironment{creativeSection}[1]{%
+    \vspace{10pt}
+    \noindent
+    \begin{tikzpicture}
+        \fill[sectionBg, rounded corners=5pt] (0,0) rectangle (\linewidth,0.6);
+        \node[text=primary, font=\large\bfseries, anchor=west, xshift=10pt] at (0,0.3) {#1};
+    \end{tikzpicture}
+    \vspace{6pt}
+}{}
+
+% 页面背景
+\backgroundsetup{
+contents={%
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[white] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}%
+},
+scale=1,angle=0,opacity=1}
+
+\setlist[itemize]{nosep, leftmargin=*, label=\textcolor{accent}{\textbullet}, itemsep=2pt}
+\setlist[description]{nosep, leftmargin=*, labelwidth=1.8cm, labelsep=0.3em, itemsep=1pt, font=\normalfont}
+
+\begin{document}
+
+% 创意头部
+\creativeHeader
+\vspace{3cm}
+
+% 联系方式
+\begin{center}
+    \footnotesize\color{secondary}
+    \begin{tabular}{ccc}
+        \faPhone\ {phone} &
+        \faEnvelope\ \href{mailto:{email}}{{email}} &
+        \faMapMarker\ {address}
+    \end{tabular}
+\end{center}
+\vspace{15pt}
+
+% 两栏布局
+\begin{minipage}[t]{0.28\textwidth}
+\raggedright\footnotesize
+
+% 创意头像框
+\ifthenelse{\equal{{photo}}{}}{}{%
+  \begin{center}
+    \begin{tikzpicture}
+        \node[circle, draw=accent, line width=2pt,
+              minimum size=2.3cm, inner sep=0pt,
+              path picture={\node at (path picture bounding box.center){\includegraphics[width=2.2cm]{{photo}}};}] {};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{8pt}
+}
+
+\begin{creativeSection}{联系方式}
+\begin{itemize}
+    \item \faPhone\ {phone}
+    \item \faEnvelope\ \href{mailto:{email}}{{email}}
+    \item \faMapMarker\ {address}
+\end{itemize}
+\end{creativeSection}
+
+\begin{creativeSection}{技能专长}
+{skills}
+\end{creativeSection}
+
+\begin{creativeSection}{外语水平}
+{languages}
+\end{creativeSection}
+
+\begin{creativeSection}{个人荣誉}
+{honors}
+\end{creativeSection}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.68\textwidth}
+\raggedright\footnotesize
+
+\begin{creativeSection}{教育背景}
+{education}
+\end{creativeSection}
+
+\begin{creativeSection}{工作经历}
+{experience}
+\end{creativeSection}
+
+\begin{creativeSection}{项目经验}
+{projects}
+\end{creativeSection}
+
+\begin{creativeSection}{自我评价}
+{selfEvaluation}
+\end{creativeSection}
+
+\end{minipage}
+
+\end{document}

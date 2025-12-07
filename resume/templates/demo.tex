@@ -1,0 +1,208 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{background}
+\usepackage{multicol}
+\geometry{margin=1.2cm}
+
+% 颜色定义
+\definecolor{primary}{RGB}{62, 80, 200}
+\definecolor{accent}{RGB}{52, 152, 219}
+\definecolor{lightgray}{RGB}{240, 240, 240} % 浅灰色
+\definecolor{mediumgray}{RGB}{200, 200, 200} % 中灰色
+\definecolor{darkgray}{RGB}{160, 160, 160} % 深灰色（或称灰色）
+
+% 设置背景
+\backgroundsetup{
+contents={
+\begin{tikzpicture}[remember picture,overlay]
+    % 左侧浅灰色背景
+    \fill[lightgray] (current page.north west) rectangle ([xshift=0.333\paperwidth]current page.south west);
+    % 中间中灰色背景
+    \fill[mediumgray] ([xshift=0.333\paperwidth]current page.north west) rectangle ([xshift=0.666\paperwidth]current page.south west);
+    % 右侧深灰色背景
+    \fill[darkgray] ([xshift=0.666\paperwidth]current page.north west) rectangle (current page.south east);
+\end{tikzpicture}
+},
+scale=1,
+angle=0,
+opacity=1
+}
+
+% 紧凑的章节格式
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+% 自定义环境 - 更紧凑
+\newenvironment{resumesection}[1]{
+    \section*{\color{primary} #1}
+    \vspace{-6pt}
+    \hrule
+    \vspace{6pt}
+}{}
+
+% 紧凑的进度条
+\newcommand{\skillbar}[1]{
+    \begin{tikzpicture}[scale=0.8]
+        \draw[fill=white, rounded corners=1pt] (0,0) rectangle (3.5,0.3);
+        \draw[fill=accent, rounded corners=1pt] (0,0) rectangle (#1*0.175,0.3);
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+% 紧凑的头部信息
+\begin{center}
+    {\LARGE\bfseries\color{primary} 张三} \\
+    \vspace{3pt}
+    {\large\color{accent} 高级软件工程师} \\
+    \vspace{8pt}
+    \footnotesize
+    \begin{tabular}{ccc}
+        \faPhone\ 138-0013-8000 & 
+        \faEnvelope\ zhangsan@email.com & 
+        \faMapMarker\ 北京市海淀区
+    \end{tabular}
+\end{center}
+
+\vspace{12pt}
+
+\begin{minipage}[t]{0.28\textwidth}
+    \raggedright
+    \footnotesize
+    
+    % 联系方式
+    \begin{resumesection}{联系方式}
+        \begin{itemize}[leftmargin=*,nosep,itemsep=2pt]
+            \item \faPhone\ 138-0013-8000
+            \item \faEnvelope\ zhangsan@email.com
+            \item \faMapMarker\ 北京市海淀区
+            \item \faGithub\ github.com/zhangsan
+        \end{itemize}
+    \end{resumesection}
+
+    % 技能专长 - 更紧凑
+    \begin{resumesection}{技能专长}
+        \textbf{编程语言} \\
+        Java \skillbar{18} \\
+        Python \skillbar{16} \\
+        JavaScript \skillbar{15} \\
+        SQL \skillbar{14} \\
+        C++ \skillbar{13} \\
+        
+        \vspace{4pt}
+        \textbf{框架技术} \\
+        Spring Boot \skillbar{17} \\
+        React \skillbar{15} \\
+        Docker \skillbar{14} \\
+        Kubernetes \skillbar{13} \\
+        MyBatis \skillbar{16} \\
+        
+        \vspace{4pt}
+        \textbf{开发工具} \\
+        Git \skillbar{16} \\
+        Maven \skillbar{15} \\
+        Jenkins \skillbar{14} \\
+        Linux \skillbar{15} \\
+        IDEA \skillbar{16} \\
+    \end{resumesection}
+
+    % 语言能力
+    \begin{resumesection}{语言能力}
+        中文 \hfill 母语 \\
+        英语 \hfill CET-6 \\
+        日语 \hfill N2 \\
+    \end{resumesection}
+
+    % 证书荣誉
+    \begin{resumesection}{证书荣誉}
+        \begin{itemize}[leftmargin=*,nosep,itemsep=2pt]
+            \item 阿里巴巴优秀员工
+            \item 系统架构设计师
+            \item Oracle Java认证
+            \item 程序设计竞赛一等奖
+        \end{itemize}
+    \end{resumesection}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.68\textwidth}
+    \raggedright
+    \footnotesize
+    
+    % 教育背景
+    \begin{resumesection}{教育背景}
+        \textbf{计算机科学与技术硕士} \hfill \textit{2018-2021} \\
+        清华大学 \hfill GPA: 3.8/4.0 \\
+        \vspace{4pt}
+        \textbf{软件工程学士} \hfill \textit{2014-2018} \\
+        北京邮电大学 \hfill GPA: 3.6/4.0 \\
+    \end{resumesection}
+
+    % 工作经历 - 更紧凑
+    \begin{resumesection}{工作经历}
+        \textbf{高级软件工程师} \hfill \textit{2021-至今} \\
+        \textbf{阿里巴巴集团} \hfill 杭州 \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 负责电商平台核心交易系统开发，日均处理订单量超100万
+            \item 主导系统架构优化，将API响应时间从200ms降低至80ms
+            \item 设计和实现微服务架构，提高系统可扩展性和稳定性
+        \end{itemize}
+        
+        \vspace{4pt}
+        \textbf{软件工程师} \hfill \textit{2019-2021} \\
+        \textbf{字节跳动} \hfill 北京 \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 参与推荐系统后端开发，优化推荐算法准确率提升15\%
+            \item 开发高性能数据缓存系统，QPS提升至10万+
+            \item 负责代码审查和技术文档编写
+        \end{itemize}
+        
+        \vspace{4pt}
+        \textbf{实习软件工程师} \hfill \textit{2018-2019} \\
+        \textbf{百度} \hfill 北京 \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 参与搜索引擎相关模块开发
+            \item 学习大型分布式系统开发经验
+        \end{itemize}
+    \end{resumesection}
+
+    % 项目经验 - 更紧凑
+    \begin{resumesection}{项目经验}
+        \textbf{智能电商推荐系统} \hfill \textit{2022.03-2022.12} \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 基于用户行为数据和机器学习算法，构建个性化商品推荐系统
+            \item 使用Spring Boot + Redis + MySQL技术栈，实现高并发处理
+            \item 项目上线后，用户点击率提升25\%，转化率提升18\%
+        \end{itemize}
+        
+        \vspace{4pt}
+        \textbf{分布式缓存中间件} \hfill \textit{2021.06-2021.12} \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 设计并开发基于Redis的分布式缓存中间件
+            \item 实现缓存预热、数据分片、故障自动切换等功能
+            \item 支持公司多个业务系统，降低数据库压力60\%
+        \end{itemize}
+        
+        \vspace{4pt}
+        \textbf{微服务监控平台} \hfill \textit{2020.09-2021.03} \\
+        \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt,partopsep=0pt]
+            \item 开发全链路监控系统，集成日志收集、性能监控、告警功能
+            \item 使用Prometheus + Grafana + ELK技术栈
+            \item 帮助团队快速定位和解决线上问题
+        \end{itemize}
+    \end{resumesection}
+
+    % 个人总结
+    \begin{resumesection}{个人总结}
+        5年软件开发和架构设计经验，精通Java和分布式系统开发。\\
+        在大型互联网公司有丰富的项目实践经验，擅长系统性能优化\\
+        和架构设计，具备团队管理和技术指导能力。
+    \end{resumesection}
+\end{minipage}
+
+\end{document}

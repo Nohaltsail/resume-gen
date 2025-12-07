@@ -1,0 +1,13 @@
+mysql_db:
+    - name: default_db
+      namespace: default
+      type: mysql
+      config:
+        db: "resumes"
+sqlite_db:
+    - name: sqlite_db
+      namespace: local
+      type: sqlite
+      config:
+        db: "resumes"
+

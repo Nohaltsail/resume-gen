@@ -1,0 +1,137 @@
+% ================================
+% 现代风 - 社招版本 (修复姓名显示)
+% ================================
+\documentclass[10pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, shadows, positioning}
+\usepackage{background}
+\usepackage{multicol}
+\usepackage{ifthen}
+
+\geometry{margin=1cm}
+
+% 现代风配色 - 专业蓝灰调
+\definecolor{primary}{HTML}{2C3E50}      % 深蓝灰
+\definecolor{accent}{HTML}{3498DB}       % 明亮蓝
+\definecolor{secondary}{HTML}{7F8C8D}    % 中灰色
+\definecolor{lightBg}{HTML}{F8F9FA}      % 浅背景
+
+% 现代技能条
+\newcommand{\skillbar}[1]{%
+\begin{tikzpicture}
+    \fill[lightBg] (0,0) rectangle (3.5,0.25);
+    \fill[accent] (0,0) rectangle (#1*0.175,0.25);
+\end{tikzpicture}%
+}
+
+% 现代几何元素 - 修复姓名显示
+\newcommand{\modernHeader}{%
+\begin{center}
+    {\LARGE\bfseries\color{primary} {name} {个人简历}} \\[2pt]
+    {\large\color{accent} {jobTitle}} \\[6pt]
+    \footnotesize\color{secondary}
+    \begin{tabular}{ccc}
+        \faPhone\ {phone} &
+        \faEnvelope\ \href{mailto:{email}}{{email}} &
+        \faMapMarker\ {address}
+    \end{tabular}
+\end{center}
+}
+
+% 现代章节样式
+\newenvironment{modernSection}[1]{%
+    \vspace{8pt}
+    \noindent
+    \begin{tikzpicture}
+        \node[rectangle, fill=primary, text=white, font=\bfseries, minimum width=0.8\linewidth, minimum height=0.5cm, anchor=west] {#1};
+    \end{tikzpicture}
+    \vspace{4pt}
+}{}
+
+% 页面背景
+\backgroundsetup{
+contents={%
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[lightBg] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}%
+},
+scale=1,angle=0,opacity=1}
+
+% 紧凑设置
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\setlist[itemize]{nosep, leftmargin=*, label=\textcolor{accent}{\textbullet}, itemsep=1pt, parsep=0pt}
+\setlist[description]{nosep, leftmargin=*, labelwidth=1.8cm, labelsep=0.3em, itemsep=1pt, font=\normalfont}
+
+\begin{document}
+
+% 现代头部
+\modernHeader
+\vspace{10pt}
+
+% 两栏布局
+\begin{minipage}[t]{0.3\textwidth}
+\raggedright\footnotesize
+
+% 头像
+\ifthenelse{\equal{{photo}}{}}{}{%
+  \begin{center}
+    \begin{tikzpicture}
+        \node[circle, minimum size=2.2cm, draw=accent, line width=2pt, inner sep=0pt,
+              path picture={\node at (path picture bounding box.center){\includegraphics[width=2.1cm]{{photo}}};}] {};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{6pt}
+}
+
+\begin{modernSection}{联系方式}
+\begin{itemize}
+    \item \faPhone\ {phone}
+    \item \faEnvelope\ \href{mailto:{email}}{{email}}
+    \item \faMapMarker\ {address}
+\end{itemize}
+\end{modernSection}
+
+\begin{modernSection}{技能专长}
+{skills}
+\end{modernSection}
+
+\begin{modernSection}{外语水平}
+{languages}
+\end{modernSection}
+
+\begin{modernSection}{个人荣誉}
+{honors}
+\end{modernSection}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.65\textwidth}
+\raggedright\footnotesize
+
+\begin{modernSection}{教育背景}
+{education}
+\end{modernSection}
+
+\begin{modernSection}{工作经历}
+{experience}
+\end{modernSection}
+
+\begin{modernSection}{项目经验}
+{projects}
+\end{modernSection}
+
+\begin{modernSection}{自我评价}
+{selfEvaluation}
+\end{modernSection}
+
+\end{minipage}
+
+\end{document}

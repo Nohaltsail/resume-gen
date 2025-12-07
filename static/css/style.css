@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.form-section {
+    padding: 30px;
+    background: #f8f9fa;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.preview-section {
+    padding: 30px;
+    background: white;
+    border-left: 1px solid #e9ecef;
+}
+
+.form-group {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.form-group h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.entry-item {
+    background: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    position: relative;
+}
+
+.btn-add {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-add:hover {
+    background: #219a52;
+    transform: translateY(-2px);
+}
+
+
+.btn-load-latest {
+    background: #00675d;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s ease;
+    text-align: center;
+}
+.btn-load-latest:hover {
+    background: #004c43;
+    transform: translateY(-2px);
+}
+
+.btn-remove {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+    background: #c0392b;
+}
+
+.template-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.template-option input[type="radio"] {
+    display: none;
+}
+
+.template-option label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.template-preview {
+    height: 120px;
+    border: 3px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.template-option input[type="radio"]:checked + label .template-preview {
+    border-color: #3498db;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.modern-preview {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    position: relative;
+}
+
+.modern-preview .preview-header {
+    height: 30%;
+    background: rgba(255,255,255,0.1);
+}
+
+.modern-preview .preview-content {
+    height: 70%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.modern-preview .preview-sidebar {
+    background: rgba(255,255,255,0.2);
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.modern-preview .preview-main {
+    background: rgba(255,255,255,0.1);
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.classic-preview {
+    background: white;
+    border: 2px solid #2c3e50;
+}
+
+.classic-preview .preview-header {
+    height: 25%;
+    background: #2c3e50;
+}
+
+.classic-preview .preview-content {
+    height: 75%;
+}
+
+.classic-preview .preview-main {
+    background: #f8f9fa;
+    margin: 10px;
+    height: calc(100% - 20px);
+    border-radius: 3px;
+}
+
+.creative-preview {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+
+.creative-preview .preview-header {
+    height: 25%;
+    background: rgba(255,255,255,0.2);
+}
+
+.creative-preview .preview-content {
+    height: 75%;
+    display: grid;
+    grid-template-columns: 35% 65%;
+}
+
+.creative-preview .preview-sidebar {
+    background: rgba(255,255,255,0.3);
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.creative-preview .preview-main {
+    background: rgba(255,255,255,0.2);
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-preview, .btn-save, .btn-generate {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-preview {
+    background: #3498db;
+    color: white;
+}
+
+.btn-preview:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-save {
+    background: #f39c12; /* 黄色背景 */
+    color: white;
+}
+
+.btn-save:hover {
+    background: #e67e22; /* 悬停时稍深的黄色 */
+    transform: translateY(-2px);
+}
+
+.btn-generate {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-generate:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.preview-header h3 {
+    color: #2c3e50;
+}
+
+.btn-refresh {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-refresh:hover {
+    background: #7f8c8d;
+}
+
+.resume-preview {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    min-height: 600px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.preview-placeholder {
+    text-align: center;
+    color: #6c757d;
+    padding: 100px 20px;
+}
+
+.preview-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+.work-experience-hidden {
+    display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .preview-section {
+        border-left: none;
+        border-top: 1px solid #e9ecef;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .template-selection {
+        grid-template-columns: 1fr;
+    }
+}
+
+.photo-field input[type=file] { margin-bottom: 8px; }
+.photo-preview {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-preview .btn-remove {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 50%;
+}
+
+/* 墨紫色照片选择按钮 */
+.btn-photo {
+    background: #5a4a9c;        /* 墨紫色 */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .3s ease;
+    display: inline-block;      /* 让 <label> 和按钮一样宽 */
+    text-align: center;
+}
+.btn-photo:hover {
+    background: #483d8b;        /* 悬停加深 */
+    transform: translateY(-2px);
+}
+/* 隐藏原生 input */
+#photoInput {
+    display: none;
+}
