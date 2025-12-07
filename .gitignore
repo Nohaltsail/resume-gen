@@ -1,0 +1,5 @@
+.idea
+*.exe
+*.env
+*.db
+.venv
